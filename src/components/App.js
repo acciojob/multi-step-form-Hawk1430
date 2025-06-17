@@ -13,8 +13,14 @@ const App = () => {
     expiry_date: ''
   });
 
-  const nextStep = () => {setStep(prev => prev + 1)}
-  const prevStep = () => {setStep(prev => prev - 1)}
+  const nextStep = () => {
+    if(step>3)
+      setStep(prev => prev + 1)
+  }
+  const prevStep = () => {
+    if(step>1)
+      setStep(prev => prev - 1)
+  }
 
   const validateForm = () => {  
   const cardRegex = /^\d{12}$/;
@@ -44,23 +50,13 @@ const App = () => {
 
   const handleChange = (e) => {
     const {id, value} = e.target;
-    setFormData(prev => ({...prev, [id]: value}));
+    setFormData({ ...formData, [id]: value });
   }
 
-  const handleSubmit = (e) =>{
-    e.preventDefault();
-    if(validateForm()){
-      console.log(formData)
-      setStep(1);
-      setFormData({
-      first_name:"",
-      last_name: "",
-      model: "",
-      car_price: 0,
-      card_info: "",
-      expiry_date: "",
-    })}
-  }
+  const handleSubmit = () => {
+    alert('Form submitted!');
+    console.log(formData);
+  };
 
   return (
     <main className="main__container">
