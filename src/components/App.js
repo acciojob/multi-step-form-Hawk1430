@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import './../styles/App.css';
-import Step from "./Step";
-
-const App = () => {
-  const [step, setStep] = useState(1);
+import React, { useState } from 'react';
+import Step from './Step';
+ 
+function App() {
+  const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -12,40 +11,42 @@ const App = () => {
     card_info: '',
     expiry_date: ''
   });
-
-  const nextStep = () => {
-    if(step>3)
-      setStep(prev => prev + 1)
-  }
-  const prevStep = () => {
-    if(step>1)
-      setStep(prev => prev - 1)
-  }
-
-  const handleChange = (e) => {
-    const {id, value} = e.target;
+ 
+  const handleChange = (event) => {
+    const { id, value } = event.target;
     setFormData({ ...formData, [id]: value });
-  }
-
+  };
+ 
+  const handleNext = () => {
+    if (currentStep < 3) {
+      setCurrentStep(prevStep => prevStep + 1);
+    }
+  };
+ 
+  const handlePrevious = () => {
+    if (currentStep > 1) {
+      setCurrentStep(prevStep => prevStep - 1);
+    }
+  };
+ 
   const handleSubmit = () => {
     alert('Form submitted!');
     console.log(formData);
   };
-
+ 
   return (
-    <main className="main__container">
-      <div>
-        <Step
-          step={step}
-          formData={formData}
-          onNext={nextStep}
-          onPrevious={prevStep}
-          onChange={handleChange}
-          onSubmit={handleSubmit}
-        />
-      </div>       
-    </main>
-  )
+    <div>
+      <h1>Multi-Step Form</h1>
+      <Step
+        step={currentStep}
+        formData={formData}
+        onChange={handleChange}
+        onNext={handleNext}
+        onPrevious={handlePrevious}
+        onSubmit={handleSubmit}
+      />
+    </div>
+  );
 }
-
-export default App
+ 
+export default App;
