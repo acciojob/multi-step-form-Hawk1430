@@ -8,7 +8,7 @@ const Step = ({step, formData, nextStep, prevStep, handleChange, handleSubmit}) 
     <form onSubmit={handleSubmit} style={{padding: "30px"}}>
         {
             step === 1 && 
-            <>
+            <div id='step1'>
                 <h2>Customer Details</h2>
                 <label>
                   First Name:
@@ -33,11 +33,11 @@ const Step = ({step, formData, nextStep, prevStep, handleChange, handleSubmit}) 
                     required
                   />
                 </label>
-            </>
+            </div>
         }
         {
             step === 2 && 
-            <>
+            <div id='step2'>
                 <h2>Car Details</h2>
                 <label>
                   Model:
@@ -62,11 +62,11 @@ const Step = ({step, formData, nextStep, prevStep, handleChange, handleSubmit}) 
                     required
                   />
                 </label>
-            </>
+            </div>
         }
         {
             step === 3 && 
-            <>
+            <div id='step3'>
                 <h2>Payment Details</h2>
                 <label>
                   Credit Card Number:
@@ -105,7 +105,7 @@ const Step = ({step, formData, nextStep, prevStep, handleChange, handleSubmit}) 
                     Expiry date should be in MM/YY format. (e.g., 1/24 or 09/25)
                   </p>
                 )}
-            </>
+            </div>
         }
         <div style={{marginTop: "10px"}}>
           {step>1 &&(
